@@ -1,0 +1,21 @@
+.view-details-btn {
+  background-color: #2b7a0b;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  margin: 6px 4px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  display: inline-block;
+  text-align: center;
+  text-decoration: none;
+}
+
+.view-details-btn:hover {
+  background-color: #1f4d00;
+  color: #e0e0e0;
+  transform: scale(1.05);
+}

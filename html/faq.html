@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FAQs - Greenify</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', sans-serif;
+    }
+
+    body {
+      background: #f0fdf4;
+      padding: 30px;
+      color: #2f855a;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 36px;
+    }
+
+    .faq-container {
+      max-width: 800px;
+      margin: auto;
+    }
+
+    .faq {
+      background: #fff;
+      border-radius: 10px;
+      margin-bottom: 15px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+      overflow: hidden;
+    }
+
+    .faq-question {
+      padding: 18px 24px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: background 0.3s ease;
+    }
+
+    .faq-question:hover {
+      background: #e6fffa;
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      padding: 0 24px;
+      background: #f9fafb;
+      transition: max-height 0.4s ease, padding 0.3s ease;
+      font-size: 16px;
+    }
+
+    .faq.open .faq-answer {
+      max-height: 300px;
+      padding: 16px 24px;
+    }
+
+    .arrow {
+      transition: transform 0.3s ease;
+    }
+
+    .faq.open .arrow {
+      transform: rotate(90deg);
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 28px;
+      }
+
+      .faq-question {
+        font-size: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Frequently Asked Questions</h1>
+  <div class="faq-container">
+
+    <div class="faq">
+      <div class="faq-question" onclick="toggleFAQ(this)">
+        What types of plants do you sell?
+        <span class="arrow">▶</span>
+      </div>
+      <div class="faq-answer">
+        We offer a wide variety of indoor, outdoor, flowering, and succulent plants. Each category is curated for different environments and aesthetic needs.
+      </div>
+    </div>
+
+    <div class="faq">
+      <div class="faq-question" onclick="toggleFAQ(this)">
+        How long does delivery take?
+        <span class="arrow">▶</span>
+      </div>
+      <div class="faq-answer">
+        Delivery typically takes 3–5 business days. Remote areas may take up to 7 days.
+      </div>
+    </div>
+
+    <div class="faq">
+      <div class="faq-question" onclick="toggleFAQ(this)">
+        Can I return a plant if it's damaged?
+        <span class="arrow">▶</span>
+      </div>
+      <div class="faq-answer">
+        Yes! If a plant arrives damaged, you can return or exchange it within 3 days. Just send us a photo and your order ID.
+      </div>
+    </div>
+
+    <div class="faq">
+      <div class="faq-question" onclick="toggleFAQ(this)">
+        Do you offer care tips for plants?
+        <span class="arrow">▶</span>
+      </div>
+      <div class="faq-answer">
+        Yes, every plant comes with a care guide. We also have a full "Care Tips" page with detailed watering, light, and soil requirements.
+      </div>
+    </div>
+
+    <div class="faq">
+      <div class="faq-question" onclick="toggleFAQ(this)">
+        What payment methods do you accept?
+        <span class="arrow">▶</span>
+      </div>
+      <div class="faq-answer">
+        We accept UPI, Credit/Debit Cards, and Cash on Delivery (COD) for select locations.
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    function toggleFAQ(element) {
+      const faq = element.parentElement;
+      faq.classList.toggle("open");
+    }
+  </script>
+</body>
+</html>

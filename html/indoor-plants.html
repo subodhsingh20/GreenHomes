@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <base href="../" />
+  <title>Indoor Plants</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+ <style>
+    /* Keep existing styles unchanged */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: wheat;
+      background-size: cover;
+      padding-bottom: 100px;
+      color: #333;
+    }
+    
+  header {
+    background-color: #0e4917;
+    padding: 12px 30px;
+    color: #fff;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: nowrap;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    gap: 20px;
+  }
+  .navbar {
+    background-color: transparent;
+    box-shadow: none;
+    padding: 0;
+    border-radius: 0;
+    margin: 0 40px 2px 530px;
+    max-width: none;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    flex-grow: 1;
+  }
+  .nav-list {
+    list-style: none;
+    display: flex;
+    justify-content: flex-start;
+    gap: 40px;
+    padding: 0;
+    margin: 0;
+  }
+  .nav-list li {
+    position: relative;
+  }
+  .nav-list a {
+    text-decoration: none;
+    color: #f7fff7;
+    font-weight: 700;
+    font-size: 16px;
+    padding: 8px 12px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: color 0.3s ease;
+  }
+  .nav-list a:hover,
+  .nav-list a:focus {
+    color: #c8f7c8;
+  }
+  .dropdown .dropbtn {
+    cursor: pointer;
+  }
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    top: 38px;
+    left: 0;
+    background-color: #fff;
+    min-width: 220px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    border-radius: 12px;
+    padding: 12px 0;
+    z-index: 1000;
+  }
+  .dropdown-content a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px 16px;
+    color: #276927;
+    font-weight: 600;
+    font-size: 15px;
+    border-radius: 8px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  .dropdown-content a img {
+    width: 48px;
+    height: 48px;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  }
+  .dropdown-content a:hover,
+  .dropdown-content a:focus {
+    background-color: #e6f4e6;
+    color: #1b4d1b;
+  }
+  .dropdown:hover .dropdown-content,
+  .dropdown:focus-within .dropdown-content {
+    display: block;
+  }
+    #cart-toggle-btn {
+      background: linear-gradient(135deg, #43a047, #1b5e20);
+      color: #fff;
+      border: none;
+      border-radius: 14px;
+      padding: 14px 26px;
+      font-weight: 800;
+      font-size: 18px;
+      cursor: pointer;
+      box-shadow: 0 8px 22px rgba(67, 160, 71, 0.95);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.4);
+    }
+    #cart-toggle-btn:hover {
+      background: linear-gradient(135deg, #1b5e20, #43a047);
+      box-shadow: 0 12px 30px rgba(27, 94, 32, 1);
+      transform: translateY(-5px) scale(1.05);
+    }
+    #cart-toggle-btn span {
+      font-weight: 700;
+      font-size: 16px;
+    }
+    #cart-toggle-btn i {
+      font-size: 20px;
+      color: #fbc02d;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.4);
+    }
+    header h1 {
+      font-size: 28px;
+      font-weight: 600;
+    }
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 24px;
+      margin: 24px auto;
+      justify-content: center;
+      background: rgba(240, 248, 255, 0.6);
+      padding: 28px 32px;
+      border-radius: 18px;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
+      border: 1px solid #b5d1b5;
+      transition: box-shadow 0.3s ease;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+    .filters:hover {
+      box-shadow: 0 14px 36px rgba(0, 0, 0, 0.3);
+    }
+    .filter-group {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      min-width: 200px;
+      background: #fefefc;
+      padding: 18px 24px;
+      border-radius: 14px;
+      box-shadow: 0 6px 16px rgba(58, 125, 68, 0.2);
+      border: 1.5px solid #8fc98f;
+      transition: box-shadow 0.3s ease, background-color 0.3s ease;
+    }
+    .filter-group:hover {
+      box-shadow: 0 8px 22px rgba(58, 125, 68, 0.4);
+      background-color: #f7fff7;
+    }
+    .filter-group label {
+      font-weight: 700;
+      color: #276927;
+      margin-bottom: 8px;
+      font-size: 17px;
+      letter-spacing: 0.04em;
+    }
+    .filter-group input[type="text"],
+    .filter-group input[type="range"] {
+      padding: 12px 16px;
+      border: 1.8px solid #8fc98f;
+      border-radius: 10px;
+      background-color: #f7fff7;
+      font-size: 16px;
+      font-weight: 600;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+    }
+    .filter-group input[type="text"]:focus,
+    .filter-group input[type="range"]:focus {
+      outline: none;
+      border-color: #3a7d44;
+      box-shadow: 0 0 10px rgba(58, 125, 68, 0.8);
+      background-color: #ffffff;
+    }
+    .checkbox-group {
+      display: flex;
+      flex-direction: column;
+      max-height: 150px;
+      overflow-y: auto;
+      padding: 12px 16px;
+      border: 1.8px solid #8fc98f;
+      border-radius: 10px;
+      background-color: #f7fff7;
+      box-shadow: inset 0 1px 4px rgba(0,0,0,0.07);
+      scrollbar-width: thin;
+      scrollbar-color: #3a7d44 #cde6cd;
+    }
+    .checkbox-group::-webkit-scrollbar {
+      width: 9px;
+    }
+    .checkbox-group::-webkit-scrollbar-track {
+      background: #cde6cd;
+      border-radius: 10px;
+    }
+    .checkbox-group::-webkit-scrollbar-thumb {
+      background-color: #3a7d44;
+      border-radius: 10px;
+      border: 2px solid #cde6cd;
+    }
+    .checkbox-group label {
+      font-weight: 600;
+      color: #276927;
+      margin-bottom: 8px;
+      cursor: pointer;
+      font-size: 15px;
+      transition: color 0.3s ease;
+    }
+    .checkbox-group label:hover {
+      color: #1e4d1e;
+    }
+    .clear-filters-btn {
+      align-self: center;
+      padding: 16px 36px;
+      background: linear-gradient(135deg, #3a7d44, #1b4d1b);
+      color: white;
+      border: none;
+      border-radius: 16px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+      height: fit-content;
+      margin-top: 28px;
+      box-shadow: 0 8px 20px rgba(58, 125, 68, 0.7);
+    }
+    .clear-filters-btn:hover {
+      background: linear-gradient(135deg, #1b4d1b, #3a7d44);
+      box-shadow: 0 10px 28px rgba(27, 94, 32, 0.9);
+      transform: translateY(-3px) scale(1.05);
+    }
+    .plant-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+      gap: 20px;
+      padding: 30px;
+    }
+    .plant-card {
+      background: linear-gradient(135deg, #f0f9f0, #d9f0d9);
+      border-radius: 24px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+      padding: 60px 30px 20px 20px;
+      transition: box-shadow 0.5s ease, transform 0.5s ease, opacity 0.5s ease;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      gap: 16px;
+      opacity: 0;
+      animation: fadeInCard 0.5s forwards;
+    }
+    .plant-card:hover {
+      box-shadow: 0 20px 48px rgba(0, 0, 0, 0.3);
+      transform: translateY(-8px) scale(1.03);
+    }
+    .plant-card img {
+      width: 195px;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 24px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+      transition: box-shadow 0.4s ease;
+    }
+    .plant-info {
+      flex: 1;
+      text-align: left;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .plant-info h3 {
+      font-size: 20px;
+      font-weight: 700;
+      margin: 0;
+      color: #1a4d1a;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding-top: 4px;
+    }
+    .price {
+      font-weight: 700;
+      font-size: 18px;
+      margin: 0 0 8px 0;
+      color: #2a6d2a;
+    }
+    .price .original-price {
+      text-decoration: line-through;
+      color: #8a8a8a;
+      margin-right: 8px;
+      font-weight: 600;
+    }
+    .price .discounted-price {
+      color: #2e8e2e;
+    }
+    @keyframes fadeInCard {
+      to {
+        opacity: 1;
+      }
+    }
+    .badge {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      background: #ff6f61;
+      color: #fff;
+      padding: 6px 14px;
+      font-size: 14px;
+      border-radius: 24px;
+      animation: badgeBounce 1.6s infinite;
+      font-weight: 600;
+      z-index: 10;
+      box-shadow: 0 4px 10px rgba(255, 111, 97, 0.8);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .offer-badge {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background: #ffcc00;
+      color: #333;
+      padding: 6px 14px;
+      font-size: 14px;
+      border-radius: 24px;
+      font-weight: 700;
+      box-shadow: 0 0 10px #ffcc00;
+      z-index: 10;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .view-details {
+      display: inline-block;
+      background: linear-gradient(135deg, #1e88e5, #1565c0);
+      color: white;
+      padding: 8px 14px;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 14px;
+      cursor: pointer;
+      box-shadow: 0 6px 14px rgba(30, 136, 229, 0.8);
+      text-decoration: none;
+      text-align: center;
+      transition: background-color 0.4s ease, box-shadow 0.4s ease, transform 0.3s ease;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .view-details:hover {
+      background: linear-gradient(135deg, #1565c0, #1e88e5);
+      box-shadow: 0 8px 22px rgba(21, 101, 192, 0.9);
+      transform: translateY(-3px);
+      text-decoration: none;
+    }
+    @keyframes badgeBounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-5px); }
+    }
+    .btns {
+      display: flex;
+      flex-direction: row;
+      gap: 15px;
+    }
+    .btns button {
+      flex: 1;
+      padding: 15px 9px;
+      border: none;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 11px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    .btns button:hover {
+      box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+      transform: translateY(-2px) scale(1.05);
+    }
+    .btn-small {
+      padding: 4px 0;
+      font-size: 10px;
+      border-radius: 8px;
+    }
+  .view-plant-btn {
+      flex: 1;
+      padding: 9px 0;
+      border: none;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 12px;
+      cursor: pointer;
+      background: linear-gradient(135deg, #1e8e28, #0a4d0a);
+      color: white;
+      box-shadow: 0 4px 10px rgba(30, 136, 229, 0.8);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin-bottom: 0;
+      transition: background-color 0.4s ease, box-shadow 0.4s ease, transform 0.3s ease;
+      text-decoration: none;
+      display: inline-block;
+      text-align: center;
+    }
+    .view-plant-btn:hover {
+      background: linear-gradient(135deg, #0a4d0a, #1e8e28);
+      box-shadow: 0 8px 20px rgba(21, 101, 192, 0.9);
+      transform: translateY(-3px) scale(1.05);
+    }
+  
+
+  /* Cart popup styles */
+  /* Cart popup styles */
+  #cart-popup {
+    position: absolute;
+    top: 48px;
+    right: 0;
+    width: 320px;
+    max-height: 400px;
+    background: #f7fff7;
+    border: 2px solid #8fc98f;
+    border-radius: 18px;
+    box-shadow: 0 8px 24px rgba(58, 125, 68, 0.4);
+    padding: 20px 24px 24px 24px;
+    overflow-y: auto;
+    z-index: 1000;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+  #cart-content {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .cart-item {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    border-bottom: 1px solid #cde6cd;
+    padding-bottom: 12px;
+  }
+
+  .cart-item:last-child {
+    border-bottom: none;
+  }
+
+  .cart-item h4 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 700;
+    color: #276927;
+  }
+
+  .cart-item p {
+    margin: 0;
+    font-size: 15px;
+    color: #4a7d4a;
+  }
+
+  .quantity-controls {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 6px;
+  }
+
+  .quantity-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: none;
+    background: linear-gradient(135deg, #43a047, #1b5e20);
+    color: white;
+    font-weight: 700;
+    font-size: 20px;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(67, 160, 71, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .quantity-btn:hover {
+    background: linear-gradient(135deg, #1b5e20, #43a047);
+    box-shadow: 0 6px 18px rgba(27, 94, 32, 1);
+  }
+
+  .quantity-display {
+    font-weight: 700;
+    font-size: 18px;
+    color: #276927;
+    min-width: 24px;
+    text-align: center;
+  }
+
+  #cart-total {
+    font-weight: 900;
+    font-size: 20px;
+    color: #1b4d1b;
+    margin-top: 18px;
+    text-align: right;
+  }
+
+  #cart-total strong {
+    font-weight: 900;
+  }
+
+  #checkout-btn {
+    margin-top: 18px;
+    width: 100%;
+    padding: 14px 0;
+    background: linear-gradient(135deg, #3a7d44, #1b4d1b);
+    color: white;
+    border: none;
+    border-radius: 18px;
+    font-weight: 900;
+    font-size: 18px;
+    cursor: pointer;
+    box-shadow: 0 10px 28px rgba(58, 125, 68, 0.85);
+    transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+  }
+
+  #checkout-btn:hover {
+    background: linear-gradient(135deg, #1b4d1b, #3a7d44);
+    box-shadow: 0 12px 36px rgba(27, 94, 32, 1);
+    transform: translateY(-3px) scale(1.05);
+  }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Best Indoor Plants</h1>
+  <nav class="navbar">
+    <ul class="nav-list">
+      <li><a href="index.html">Home</a></li>
+      <li class="dropdown">
+        <a href="#" class="dropbtn">Category <i class="fa fa-caret-down"></i></a>
+        <div class="dropdown-content">
+          <a href="html/flowering-plants.html">
+            <img src="img/floweringp.jpg" alt="Flowering Plants" />
+            Flowering Plants
+        
+          <a href="html/hanging-plants.html">
+            <img src="img/hangingp.jpg" alt="Hanging Plants" />
+            Hanging Plants
+          </a>
+          <a href="html/medicinal-plants.html">
+            <img src="img/medicinalp.jpg" alt="Medicinal Plants" />
+            Medicinal Plants
+            </a>
+        </div>
+      </li>
+      <li><a href="html/contact.html">Contact us</a></li>
+      <li><a href="about.html">About</a></li>
+    </ul>
+  </nav>
+  <div style="position: relative;">
+    <button id="cart-toggle-btn" style="background: linear-gradient(135deg, #43a047, #1b5e20); color: white; border: none; border-radius: 14px; padding: 8px 18px; cursor: pointer; font-weight: 800; font-size: 14px; box-shadow: 0 6px 18px rgba(67, 160, 71, 0.85); display: flex; align-items: center; gap: 8px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; text-shadow: 0 1px 3px rgba(0,0,0,0.4); transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;">
+      <i class="fa fa-shopping-cart" style="font-size: 16px; color: #fbc02d; text-shadow: 0 1px 2px rgba(0,0,0,0.4);"></i>
+      <span style="font-weight: 700; font-size: 14px;">Cart (<span id="cart-count">0</span>)</span>
+    </button>
+    <div id="cart-popup" class="cart-popup" style="display: none;">
+      <h3>Your Cart</h3>
+      <div id="cart-content" class="cart-content"></div>
+      <div id="cart-total" class="cart-total"></div>
+      <button id="checkout-btn">Go to Checkout</button>
+    </div>
+  </div>
+</header>
+
+
+
+
+<!-- Filter Controls -->
+<div class="filters">
+  <div class="filter-group">
+    <label for="search">Search</label>
+    <input type="text" id="search" placeholder="Search indoor plants..." />
+  </div>
+
+  <div class="filter-group">
+    <label>Price Range</label>
+    <div class="checkbox-group" id="priceFilter">
+      <label><input type="checkbox" value="100-200" /> ₹100 - ₹200</label>
+      <label><input type="checkbox" value="200-300" /> ₹200 - ₹300</label>
+      <label><input type="checkbox" value="300-400" /> ₹300 - ₹400</label>
+      <label><input type="checkbox" value="400-500" /> ₹400 - ₹500</label>
+      <label><input type="checkbox" value="500+" /> ₹500+</label>
+    </div>
+  </div>
+
+  <div class="filter-group">
+    <label>Season</label>
+    <div class="checkbox-group" id="seasonFilter">
+      <label><input type="checkbox" value="All" /> All</label>
+    </div>
+  </div>
+
+  <button class="clear-filters-btn" id="clearFiltersBtn">Clear Filters</button>
+</div>
+
+<!-- Plant Cards Container -->
+<div class="plant-container" id="plant-container"></div>
+
+<!-- Overlay (for optional future popup usage) -->
+<div id="overlay" style="display:none;"></div>
+
+<script>
+  // Indoor plant data
+  const plants = [
+    { name: "Snake Plant", type: "Snake Plant", price: 350, discount: 10, color: "Green", season: "All", image: "img/indoor_page/snake_plant.webp", offer: "10% OFF" },
+    { name: "Peace Lily", type: "Peace Lily", price: 320, discount: 15, color: "White", season: "All", image: "img/indoor_page/peace_lilly.jpg", offer: "15% OFF" },
+    { name: "Philodendron", type: "Philodendron", price: 460, discount: 20, color: "Green", season: "All", image: "img/Indoor_page/philodendron.jpg", offer: "20% OFF" },
+    { name: "Pothos", type: "Pothos", price: 420, discount: 0, color: "Green", season: "All", image: "img/Indoor_page/pothos.jpg", offer: "" },
+    { name: "Chinese Evergreen", type: "Chinese Evergreen", price: 200, discount: 10, color: "Green", season: "All", image: "img/Indoor_page/chinese_evergreen.jpg", offer: "10% OFF" },
+    { name: "Dracaena", type: "Dracaena", price: 150, discount: 0, color: "Green", season: "All", image: "img/Indoor_page/dracaena.jpg", offer: "" },
+    { name: "Fiddle Leaf Fig", type: "Fiddle Leaf Fig", price: 580, discount: 0, color: "Green", season: "All", image: "img/Indoor_page/fiddle_leaf.jpg", offer: "" },
+    { name: "Boston Fern", type: "Boston Fern", price: 300, discount: 5, color: "Green", season: "All", image: "img/Indoor_page/boston_fern.jpg", offer: "5% OFF" },
+    { name: "Calathea", type: "Calathea", price: 450, discount: 10, color: "Green", season: "All", image: "img/Indoor_page/calathea.jpg", offer: "10% OFF" },
+    { name: "Cast Iron Plant", type: "Cast Iron Plant", price: 380, discount: 0, color: "Green", season: "All", image: "img/Indoor_page/cast_iron.jpg", offer: "" },
+    { name: "Chinese Money Plant", type: "Chinese Money Plant", price: 270, discount: 0, color: "Green", season: "All", image: "img/Indoor_page/chinese_money_plant.jpg", offer: "" },
+    { name: "Dracaena Marginata", type: "Dracaena Marginata", price: 520, discount: 15, color: "Green", season: "All", image: "img/Indoor_page/dracaena.jpg", offer: "15% OFF" },
+    { name: "Lucky Bamboo", type: "Lucky Bamboo", price: 350, discount: 10, color: "Green", season: "All", image: "img/Indoor_page/lucky_bamboo.jpg", offer: "10% OFF" },
+    { name: "Parlor Palm", type: "Parlor Palm", price: 400, discount: 0, color: "Green", season: "All", image: "img/Indoor_page/parlor_palm.jpg", offer: "" }
+  ];
+
+  const plantPageMap = {
+    "snake plant": "html/snake.html",
+    "peace lily": "html/peacelily.html",
+    "philodendron": "html/philodendron.html",
+    "pothos": "html/pothos.html",
+    "chinese evergreen": "html/chinese_evergreen.html",
+    "dracaena": "html/dracaena.html",
+    "fiddle leaf fig": "html/fiddle_leaf.html",
+    "boston fern": "html/boston_fern.html",
+    "calathea": "html/calathea.html",
+    "cast iron plant": "html/cast_iron.html",
+    "chinese money plant": "html/chinese_money_plant.html",
+    "dracaena marginata": "html/dracaena_marginata.html",
+    "lucky bamboo": "html/lucky_bamboo.html",
+    "parlor palm": "html/parlor_palm.html"
+  };
+
+  const container = document.getElementById('plant-container');
+  const searchInput = document.getElementById('search');
+  const priceFilter = document.getElementById('priceFilter');
+  const seasonFilter = document.getElementById('seasonFilter');
+  const clearFiltersBtn = document.getElementById('clearFiltersBtn');
+
+  function renderPlants(plantsToRender) {
+    container.innerHTML = '';
+    plantsToRender.forEach(plant => {
+      const discountedPrice = plant.discount ? (plant.price * (100 - plant.discount) / 100).toFixed(0) : plant.price;
+      const card = document.createElement('div');
+      card.className = 'plant-card';
+      const plantKey = plant.name.toLowerCase();
+      const plantPage = plantPageMap[plantKey] || "#";
+      card.innerHTML = `
+        <span class="badge">Indoor</span>
+        ${plant.offer ? `<div class="offer-badge">${plant.offer}</div>` : ''}
+        <img src="${plant.image}" alt="${plant.name}" />
+        <div class="plant-info">
+          <h3>${plant.name}</h3>
+          <p class="price">
+            ${plant.discount ? `<span class="original-price">₹${plant.price}</span> ₹${discountedPrice}` : `₹${plant.price}`}
+          </p>
+          <a href="${plantPage}" class="view-plant-btn" style="text-decoration:none; display:inline-block;">View Plant</a>
+          <div class="btns">
+            <button class="btn-small" onclick='addToCart("${plant.name}", ${discountedPrice}, "${plant.image}")'>Add to Cart</button>
+            <button class="btn-small" onclick='buyNow("${plant.name}", ${discountedPrice}, "${plant.image}")'>Buy Now</button>
+          </div>
+        </div>
+      `;
+      container.appendChild(card);
+    });
+  }
+
+  function getCheckedValues(container) {
+    return Array.from(container.querySelectorAll('input[type="checkbox"]:checked')).map(cb => cb.value);
+  }
+
+  function filterPlants() {
+    const searchTerm = searchInput.value.toLowerCase();
+    const selectedSeasons = getCheckedValues(seasonFilter);
+    const selectedPriceRanges = getCheckedValues(priceFilter);
+
+    let filtered = plants.filter(p =>
+      p.name.toLowerCase().includes(searchTerm)
+    );
+
+    if (selectedPriceRanges.length > 0) {
+      filtered = filtered.filter(p => {
+        return selectedPriceRanges.some(range => {
+          if (range === "500+") {
+            return p.price >= 500;
+          }
+          const [min, max] = range.split('-').map(Number);
+          return p.price >= min && p.price <= max;
+        });
+      });
+    }
+
+    if (selectedSeasons.length > 0) {
+      filtered = filtered.filter(p => selectedSeasons.includes(p.season));
+    }
+
+    renderPlants(filtered);
+    toggleNoResultsMessage(filtered);
+  }
+
+  // Show or hide "No results found" message based on filtered plants
+  function toggleNoResultsMessage(filteredPlants) {
+    const noResultsMessage = document.getElementById('no-results-message');
+    if (filteredPlants.length === 0) {
+      noResultsMessage.style.display = 'block';
+    } else {
+      noResultsMessage.style.display = 'none';
+    }
+  }
+
+  // Cart functionality
+  let cartData = JSON.parse(localStorage.getItem("cart")) || [];
+
+  function updateCartPopup() {
+    const cartContent = document.getElementById("cart-content");
+    cartContent.innerHTML = "";
+
+    if (cartData.length === 0) {
+      cartContent.innerHTML = "<p>Your cart is empty.</p>";
+      return;
+    }
+
+    cartData.forEach((item, index) => {
+      const div = document.createElement("div");
+      div.className = "cart-item";
+      div.innerHTML = `
+        <h4>${item.name}</h4>
+        <p>Price: ₹${item.price} x ${item.quantity}</p>
+        <div class="quantity-controls">
+          <button class="quantity-btn decrease-btn" data-index="${index}">−</button>
+          <div class="quantity-display">${item.quantity}</div>
+          <button class="quantity-btn increase-btn" data-index="${index}">+</button>
+        </div>
+      `;
+      cartContent.appendChild(div);
+    });
+
+    // Add event listeners for buttons
+    document.querySelectorAll(".decrease-btn").forEach(button => {
+      button.addEventListener("click", (e) => {
+        e.stopPropagation();
+        const idx = e.target.getAttribute("data-index");
+        if (cartData[idx].quantity > 1) {
+          cartData[idx].quantity -= 1;
+        } else {
+          cartData.splice(idx, 1);
+        }
+        localStorage.setItem("cart", JSON.stringify(cartData));
+        updateCartPopup();
+        updateCartCount();
+      });
+    });
+
+    document.querySelectorAll(".increase-btn").forEach(button => {
+      button.addEventListener("click", (e) => {
+        e.stopPropagation();
+        const idx = e.target.getAttribute("data-index");
+        cartData[idx].quantity += 1;
+        localStorage.setItem("cart", JSON.stringify(cartData));
+        updateCartPopup();
+        updateCartCount();
+      });
+    });
+  }
+
+  function updateCartCount() {
+    const countSpan = document.getElementById("cart-count");
+    const totalCount = cartData.reduce((acc, item) => acc + item.quantity, 0);
+    countSpan.textContent = totalCount;
+  }
+
+  function addToCart(name, price, image) {
+    // Convert relative image path to absolute URL based on current document location
+    let absoluteImage = image;
+    try {
+      if (image && !image.startsWith('http') && !image.startsWith('data:')) {
+        absoluteImage = new URL(image, document.baseURI).href;
+      }
+    } catch (e) {
+      // fallback to original image if URL constructor fails
+      absoluteImage = image;
+    }
+    const existingItem = cartData.find(item => item.name === name);
+    if (existingItem) {
+      existingItem.quantity += 1;
+    } else {
+      cartData.push({ name, price, image: absoluteImage, quantity: 1 });
+    }
+    localStorage.setItem("cart", JSON.stringify(cartData));
+    updateCartPopup();
+    updateCartCount();
+    showToast(`${name} has been added to your cart.`);
+  }
+
+  function buyNow(name, price, image) {
+    addToCart(name, price, image);
+    window.location.href = "html/billing.html";
+  }
+
+  window.addEventListener("load", () => {
+    updateCartPopup();
+    updateCartCount();
+    renderPlants(plants);
+
+    // Cart toggle button event listener
+    const cartToggleBtn = document.getElementById("cart-toggle-btn");
+    const cartPopup = document.getElementById("cart-popup");
+    cartToggleBtn.addEventListener("click", () => {
+      if (cartPopup.style.display === "none" || cartPopup.style.display === "") {
+        cartPopup.style.display = "block";
+      } else {
+        cartPopup.style.display = "none";
+      }
+    });
+
+    // Close cart popup when clicking outside of it
+    document.addEventListener("click", (event) => {
+      const isClickInsideCart = cartPopup.contains(event.target);
+      const isClickOnToggleBtn = cartToggleBtn.contains(event.target);
+      const isClickOnQuantityBtn = event.target.classList.contains('quantity-btn') || event.target.classList.contains('decrease-btn') || event.target.classList.contains('increase-btn');
+      if (!isClickInsideCart && !isClickOnToggleBtn) {
+        cartPopup.style.display = "none";
+      }
+      // Do not close cart if clicking quantity buttons inside cart
+      if (isClickOnQuantityBtn) {
+        event.stopPropagation();
+      }
+    });
+
+    // Checkout button event listener
+    const checkoutBtn = document.getElementById("checkout-btn");
+    checkoutBtn.addEventListener("click", () => {
+      if (cartData.length === 0) {
+        alert("Your cart is empty. Please add items before checkout.");
+      } else {
+        window.location.href = "html/billing.html";
+      }
+    });
+
+    // Filter event listeners
+    searchInput.addEventListener('input', filterPlants);
+    priceFilter.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.addEventListener('change', filterPlants));
+    seasonFilter.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.addEventListener('change', filterPlants));
+
+    clearFiltersBtn.addEventListener('click', () => {
+      location.reload();
+    });
+
+    // Season "All" checkbox behavior
+    const seasonAllCheckbox = document.getElementById('seasonAll');
+    seasonAllCheckbox.addEventListener('change', () => {
+      const seasonCheckboxes = seasonFilter.querySelectorAll('input[type="checkbox"]');
+      seasonCheckboxes.forEach(cb => {
+        if (cb !== seasonAllCheckbox) {
+          cb.checked = seasonAllCheckbox.checked;
+        }
+      });
+      filterPlants();
+    });
+
+    // If any season checkbox is unchecked, uncheck "All"
+    seasonFilter.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+      if (cb !== seasonAllCheckbox) {
+        cb.addEventListener('change', () => {
+          if (!cb.checked) {
+            seasonAllCheckbox.checked = false;
+          } else {
+            const allChecked = Array.from(seasonFilter.querySelectorAll('input[type="checkbox"]'))
+              .filter(c => c !== seasonAllCheckbox)
+              .every(c => c.checked);
+            seasonAllCheckbox.checked = allChecked;
+          }
+          filterPlants();
+        });
+      }
+    });
+
+    // Color filter checkboxes event listeners
+    colorFilter.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+      cb.addEventListener('change', filterPlants);
+    });
+  });
+
+  // Toast notification
+  function showToast(message) {
+    const container = document.getElementById('toast-container');
+    const toast = document.createElement('div');
+    toast.textContent = message;
+    toast.style.background = '#d32f2f'; /* Darker red */
+    toast.style.color = 'white';
+    toast.style.padding = '14px 24px';
+    toast.style.borderRadius = '12px';
+    toast.style.boxShadow = '0 6px 12px rgba(0, 0, 0, 0.3)';
+    toast.style.marginTop = '12px';
+    toast.style.fontWeight = '600';
+    toast.style.opacity = '1';
+    toast.style.transition = 'opacity 0.6s ease';
+
+    container.appendChild(toast);
+
+    setTimeout(() => {
+      toast.style.opacity = '0';
+      setTimeout(() => container.removeChild(toast), 600);
+    }, 2800);
+  }
+</script>
+
+<div id="toast-container" style="position: fixed; top: 70px; right: 20px; z-index: 10000;"></div>
+
+<div id="no-results-message" style="display:none; text-align:center; font-size: 40px; color: #ffffff; background-color: #5fd869c1; font-weight: 700; margin-top: 40px;">
+  No plants match your search criteria.
+</div>
+
+</body>
+</html>

@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Blog - Greenify</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet"/>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+
+    body {
+      background: #f0fdf4;
+      padding: 40px 20px 60px;
+      color: #2f855a;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    header {
+      max-width: 1100px;
+      margin: 0 auto 40px;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      color: #1a4d1a;
+      margin-bottom: 10px;
+      letter-spacing: 0.05em;
+    }
+
+    header p.subtitle {
+      font-size: 1.2rem;
+      color: #276927;
+      font-weight: 500;
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.5;
+    }
+
+    .blog-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 30px;
+      max-width: 1100px;
+      margin: 0 auto;
+      flex-grow: 1;
+    }
+
+    .blog-card {
+      background: #fff;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      display: flex;
+      flex-direction: column;
+      cursor: pointer;
+    }
+
+    .blog-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.15);
+    }
+
+    .blog-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-bottom: 4px solid #38a169;
+      transition: transform 0.4s ease;
+    }
+
+    .blog-card:hover img {
+      transform: scale(1.05);
+    }
+
+    .blog-content {
+      padding: 24px 28px 28px;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .blog-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 14px;
+      color: #1a4d1a;
+      line-height: 1.2;
+      letter-spacing: 0.03em;
+    }
+
+    .blog-snippet {
+      font-size: 1rem;
+      color: #4a5568;
+      margin-bottom: 20px;
+      flex-grow: 1;
+      line-height: 1.5;
+    }
+
+    .read-more {
+      text-decoration: none;
+      color: #276927;
+      font-weight: 700;
+      font-size: 1rem;
+      align-self: flex-start;
+      border: 2px solid #276927;
+      padding: 8px 16px;
+      border-radius: 30px;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      box-shadow: 0 4px 10px rgba(39, 105, 39, 0.3);
+    }
+
+    .read-more:hover {
+      background-color: #276927;
+      color: #f0fdf4;
+      text-decoration: none;
+      box-shadow: 0 6px 16px rgba(39, 105, 39, 0.6);
+    }
+
+    footer {
+      max-width: 1100px;
+      margin: 40px auto 0;
+      text-align: center;
+      color: #276927;
+      font-weight: 500;
+      font-size: 0.9rem;
+      letter-spacing: 0.05em;
+    }
+
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 2.2rem;
+      }
+
+      .blog-title {
+        font-size: 1.3rem;
+      }
+
+      .blog-snippet {
+        font-size: 0.95rem;
+      }
+
+      .blog-card img {
+        height: 160px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Plant Blog & Tips</h1>
+    <p class="subtitle">Explore expert advice, plant care tips, and gardening inspiration to help your green space thrive.</p>
+  </header>
+
+  <main class="blog-container">
+
+    <article class="blog-card" tabindex="0" role="article" aria-label="Top 5 Indoor Plants for Beginners">
+      <img src="../img/top5indoorplants.jpg" alt="Indoor Plants"/>
+      <div class="blog-content">
+        <h2 class="blog-title">Top 5 Indoor Plants for Beginners</h2>
+        <p class="blog-snippet">New to houseplants? Discover the easiest and most forgiving indoor plants to start your green journey.</p>
+        <button class="read-more" aria-label="Read more about Top 5 Indoor Plants for Beginners">Read More →</button>
+        <p class="blog-full-text" style="display:none; margin-top: 12px; color: #2f855a;">
+          Indoor plants like snake plants, pothos, and peace lilies are great for beginners because they require minimal care and thrive in low light conditions. They help purify the air and add a touch of greenery to your home. These plants also improve indoor air quality by filtering toxins and increasing humidity, making your living space healthier and more comfortable.
+        </p>
+      </div>
+    </article>
+
+    <article class="blog-card" tabindex="0" role="article" aria-label="How to Care for Succulents">
+      <img src="../img/succulents.jpg" alt="Succulent Plants"/>
+      <div class="blog-content">
+        <h2 class="blog-title">How to Care for Succulents</h2>
+        <p class="blog-snippet">Succulents are low-maintenance but not foolproof. Learn the key tips to keep them happy and healthy.</p>
+        <button class="read-more" aria-label="Read more about How to Care for Succulents">Read More →</button>
+        <p class="blog-full-text" style="display:none; margin-top: 12px; color: #2f855a;">
+          Succulents need well-draining soil and bright, indirect sunlight. Overwatering is the most common mistake, so allow the soil to dry out completely between waterings. Additionally, succulents benefit from occasional fertilizing during the growing season to promote healthy growth and vibrant colors.
+        </p>
+      </div>
+    </article>
+
+    <article class="blog-card" tabindex="0" role="article" aria-label="Spring Gardening Tips You Should Know">
+      <img src="../img/spring_gardening.jpg" alt="Gardening Tips"/>
+      <div class="blog-content">
+        <h2 class="blog-title">Spring Gardening Tips You Should Know</h2>
+        <p class="blog-snippet">Get your hands dirty with these essential tips to prepare your plants and soil for a flourishing spring season.</p>
+        <button class="read-more" aria-label="Read more about Spring Gardening Tips You Should Know">Read More →</button>
+        <p class="blog-full-text" style="display:none; margin-top: 12px; color: #2f855a;">
+          Spring is the perfect time to prune, fertilize, and plant new seeds. Make sure to prepare your soil by adding compost and removing weeds to give your plants the best start. Regular watering and pest control during this season will also help ensure a healthy and productive garden.
+        </p>
+      </div>
+    </article>
+
+    <article class="blog-card" tabindex="0" role="article" aria-label="Common Plant Problems and How to Fix Them">
+      <img src="../img/plant_problems.jpg" alt="Plant Care"/>
+      <div class="blog-content">
+        <h2 class="blog-title">Common Plant Problems and How to Fix Them</h2>
+        <p class="blog-snippet">Yellow leaves? Droopy stems? Don’t panic! Learn how to troubleshoot common issues with your beloved greens.</p>
+        <button class="read-more" aria-label="Read more about Common Plant Problems and How to Fix Them">Read More →</button>
+        <p class="blog-full-text" style="display:none; margin-top: 12px; color: #2f855a;">
+          Common problems include overwatering, pests, and insufficient light. Identifying the issue early and adjusting care routines can help your plants recover quickly. Using natural remedies and proper plant hygiene can prevent many common issues and promote long-term plant health.
+        </p>
+      </div>
+    </article>
+
+  
+
+  <article class="blog-card" tabindex="0" role="article" aria-label="Choosing the Right Fertilizer for Your Plants">
+    <img src="../img/right_fertilizer.webp" alt="Plant Fertilizer"/>
+    <div class="blog-content">
+      <h2 class="blog-title">Choosing the Right Fertilizer for Your Plants</h2>
+      <p class="blog-snippet">Fertilizers provide essential nutrients to plants. Learn how to select the best type for your green friends.</p>
+      <button class="read-more" aria-label="Read more about Choosing the Right Fertilizer for Your Plants">Read More →</button>
+      <p class="blog-full-text" style="display:none; margin-top: 12px; color: #2f855a;">
+        Different plants require different nutrients. Organic fertilizers are great for long-term soil health, while synthetic fertilizers provide quick nutrient boosts. Understanding your plant's needs ensures healthy growth.
+      </p>
+    </div>
+  </article>
+
+  <article class="blog-card" tabindex="0" role="article" aria-label="Watering Tips for Healthy Plants">
+    <img src="../img/watering_tips.jpg" alt="Watering Plants"/>
+    <div class="blog-content">
+      <h2 class="blog-title">Watering Tips for Healthy Plants</h2>
+      <p class="blog-snippet">Proper watering is crucial for plant health. Avoid common mistakes with these expert tips.</p>
+      <button class="read-more" aria-label="Read more about Watering Tips for Healthy Plants">Read More →</button>
+      <p class="blog-full-text" style="display:none; margin-top: 12px; color: #2f855a;">
+        Overwatering can lead to root rot, while underwatering causes wilting. Check soil moisture regularly and water deeply but infrequently to encourage strong root systems.
+      </p>
+    </div>
+  </article>
+
+
+  </main>
+  <footer>
+    &copy; 2025 Green Homes. All rights reserved.
+  </footer>
+
+  <script>
+    document.querySelectorAll('.read-more').forEach(button => {
+      button.addEventListener('click', event => {
+        event.preventDefault();
+        const blogContent = button.parentElement;
+        const fullText = blogContent.querySelector('.blog-full-text');
+        if (fullText.style.display === 'none' || fullText.style.display === '') {
+          fullText.style.display = 'block';
+          blogContent.parentElement.style.transition = 'max-height 0.5s ease';
+          blogContent.parentElement.style.overflow = 'hidden';
+          blogContent.parentElement.style.maxHeight = blogContent.parentElement.scrollHeight + fullText.scrollHeight + 'px';
+          button.textContent = 'Read Less ↑';
+        } else {
+          fullText.style.display = 'none';
+          blogContent.parentElement.style.maxHeight = blogContent.parentElement.scrollHeight + 'px';
+          button.textContent = 'Read More →';
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>

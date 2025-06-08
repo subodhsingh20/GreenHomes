@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Billing | Plant Shop</title>
+  <link rel="stylesheet" href="../css/billing.css">
+</head>
+<body>
+
+
+  <h2>🧾 Billing Summary</h2>
+  <p class="billing-summary-text">Please review your order details below:</p>
+  <div class="billing-container">
+    <div id="billing-box" class="billing-summary">
+    </div>
+
+    <div class="address-wrapper">
+      
+      <!-- Address Entry Section -->
+      <section class="address-section">
+        <h2>Enter New Address</h2>
+        <form id="billing-form">
+          <input type="text" id="fullName" placeholder="Full Name" required>
+          <input type="text" id="address" placeholder="Address" required>
+          <input type="text" id="city" placeholder="City" required>
+          <input type="text" id="state" placeholder="State" required>
+          <input type="text" id="zip" placeholder="ZIP Code" required>
+          <button type="submit">Save Address</button>
+        </form>
+      </section>
+
+      <!-- Saved Addresses Section -->
+      <section class="saved-addresses">
+        <h2>Saved Addresses</h2>
+        <ul id="saved-addresses">
+          <!-- Rendered dynamically by JS -->
+             <div class="button-group">
+    <button class="use-btn">Use This</button>
+    <button class="delete-btn">Delete</button>
+  </div>
+        </ul>
+      </section>
+
+    </div>
+  </div>
+
+  <!-- Payment Popup -->
+  <div id="payment-popup" class="popup">
+    <h3>Select Payment Method</h3>
+    <div class="payment-methods">
+      <label><input type="radio" name="payment-method" value="UPI"> 🏦 UPI</label>
+      <label><input type="radio" name="payment-method" value="Credit Card"> 💳 Credit Card</label>
+      <label><input type="radio" name="payment-method" value="Debit Card"> 💳 Debit Card</label>
+      <label><input type="radio" name="payment-method" value="Cash on Delivery"> 💵 Cash on Delivery</label>
+    </div>
+    <div id="payment-details"></div>
+    <button id="confirm-payment">Complete Payment</button>
+    <button id="cancel-payment">Cancel</button>
+  </div>
+
+  <script src="../js/billing.js"></script>
+</body>
+</html>

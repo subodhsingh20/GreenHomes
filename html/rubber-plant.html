@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Rubber Plant - Plants Garden</title>
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+<header class="navbar">
+  <div class="nav-logo">🌿 Plant Shop</div>
+  <div class="search-box">
+    <input type="text" id="search-input" placeholder="Search plants...">
+    <button class="search-btn">🔍</button>
+  </div>
+  <ul class="nav-links">
+    <li><a href="../index.html">Home</a></li>
+    <li class="dropdown">
+      <a href="#">Category ▾</a>
+      <ul class="dropdown-menu">
+        <li><a href="../cards/indoor.html">Indoor Plants</a></li>
+        <li><a href="../cards/outdoor.html">Outdoor Plants</a></li>
+        <li><a href="../cards/flowering.html">Flowering Plants</a></li>
+        <li><a href="../cards/hanging.html">Hanging Plants</a></li>
+        <li><a href="../cards/medicinal.html">Medicinal Plants</a></li>
+      </ul>
+    </li>
+    <li><a href="../contact.html">Contact</a></li>
+    <li><a href="../about.html">About</a></li>
+    <li id="nav-login"><a href="../login.html">Login</a></li>
+    <li id="user-menu" style="display: none; position: relative;">
+      <span id="user-name" style="cursor: pointer;"></span>
+      <ul id="user-dropdown" style="display: none; position: absolute; background: #006b14f2; border-radius: 8px; padding: 10px;">
+        <li><a href="#" id="logout-link">Logout</a></li>
+      </ul>
+    </li>
+  </ul>
+  <div class="cart-icon" onclick="toggleCart()">🛒<span id="cart-count">0</span></div>
+</header>
+
+<div id="cart-modal" class="cart-modal">
+  <h3>Your Cart</h3>
+  <div id="cart-items"></div>
+  <div class="cart-total" id="cart-total">Total: ₹0.00</div>
+  <button class="checkout-btn" onclick="checkout()">Checkout</button>
+</div>
+
+<section class="plant-detail">
+  <div class="plant-image">
+    <img src="../img/p10.jpeg" alt="Rubber Plant">
+  </div>
+  <div class="plant-info">
+    <h1>Rubber Plant</h1>
+    <p><strong>Price:</strong> ₹600</p>
+    <p><strong>Description:</strong> The Rubber Plant is a robust indoor plant with glossy leaves and air-purifying properties.</p>
+    <p><strong>Category:</strong> Indoor Plants</p>
+    <p><strong>Availability:</strong> In Stock</p>
+    <label for="quantity">Quantity:</label>
+    <input type="number" id="quantity" name="quantity" value="1" min="1">
+    <button onclick="addToCart('Rubber Plant', 600)">Add to Cart</button>
+  </div>
+</section>
+
+<footer>
+  <p>&copy; 2025 Plants Garden. All rights reserved.</p>
+</footer>
+<script src="../script.js"></script>
+</body>
+</html>

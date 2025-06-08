@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>User Account - Green Homes</title>
+  <link rel="stylesheet" href="../styles.css" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f9f4;
+      margin: 0;
+      padding: 0;
+      color: #1b4d1b;
+    }
+    header.navbar {
+      background-color: #2e7d32;
+      color: white;
+      padding: 15px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    header.navbar .nav-logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+    main.account-container {
+      max-width: 800px;
+      margin: 40px auto;
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(27, 77, 27, 0.2);
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #2e7d32;
+    }
+    section.profile-info, section.change-password {
+      margin-bottom: 40px;
+    }
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      margin-bottom: 20px;
+      font-size: 1rem;
+    }
+    button {
+      background-color: #2e7d32;
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 6px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #1b4d1b;
+    }
+    .logout-btn {
+      background-color: #c62828;
+      margin-top: 20px;
+      width: 100%;
+    }
+    .logout-btn:hover {
+      background-color: #8b0000;
+    }
+    .profile-pic {
+      display: block;
+      margin: 0 auto 20px auto;
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid #2e7d32;
+    }
+  </style>
+</head>
+<body>
+  <header class="navbar">
+    <div class="nav-logo">🌿 Green Homes</div>
+  </header>
+  <main class="account-container">
+    <h1>Your Account</h1>
+    <section class="profile-info">
+      <img src="../img/logo.png" alt="Profile Picture" class="profile-pic" />
+      <form id="profile-form">
+        <label for="name">Full Name</label>
+        <input type="text" id="name" name="name" placeholder="John Doe" required />
+        <label for="email">Email Address</label>
+        <input type="email" id="email" name="email" placeholder="john@example.com" required />
+      </form>
+    </section>
+    <button id="show-change-password-btn" style="background-color: #2e7d32; color: white; border: none; padding: 12px 25px; border-radius: 6px; font-size: 1rem; cursor: pointer; transition: background-color 0.3s ease; margin-bottom: 20px;">Change Password</button>
+    <section class="change-password" style="display: none;">
+      <h2>Change Password</h2>
+      <form id="password-form">
+        <label for="current-password">Current Password</label>
+        <input type="password" id="current-password" name="current-password" required />
+        <label for="new-password">New Password</label>
+        <input type="password" id="new-password" name="new-password" required />
+        <label for="confirm-password">Confirm New Password</label>
+        <input type="password" id="confirm-password" name="confirm-password" required />
+        <button type="submit">Change Password</button>
+      </form>
+    </section>
+    <button class="logout-btn" id="logout-btn">Logout</button>
+  </main>
+  <script>
+    // Populate profile form with logged-in user data
+    document.addEventListener('DOMContentLoaded', () => {
+      const user = JSON.parse(localStorage.getItem('loggedInUser'));
+      if (user) {
+        document.getElementById('name').value = user.firstname || '';
+        document.getElementById('email').value = user.email || '';
+      }
+
+      // Show/hide change password section on button click
+      const showChangePasswordBtn = document.getElementById('show-change-password-btn');
+      const changePasswordSection = document.querySelector('.change-password');
+
+      showChangePasswordBtn.addEventListener('click', () => {
+        if (changePasswordSection.style.display === 'none' || changePasswordSection.style.display === '') {
+          changePasswordSection.style.display = 'block';
+          showChangePasswordBtn.style.display = 'none';
+        }
+      });
+
+      // Logout button handler
+      document.getElementById('logout-btn').addEventListener('click', () => {
+        localStorage.removeItem('isLoggedIn');
+        localStorage.removeItem('loggedInUser');
+        alert('You have been logged out.');
+        window.location.href = '../index.html';
+      });
+    });
+
+    // Profile form submission handler
+    // Remove the submit event listener since we want to auto-save on input changes
+    // document.getElementById('profile-form').addEventListener('submit', function(e) {
+    //   e.preventDefault();
+    //   alert('Profile saved successfully!');
+    //   // Here you would add code to save profile info, e.g., via API call
+    // });
+
+    // Auto-save user details on input change
+    const nameInput = document.getElementById('name');
+    const emailInput = document.getElementById('email');
+
+    function saveUserDetails() {
+      const user = JSON.parse(localStorage.getItem('loggedInUser')) || {};
+      user.firstname = nameInput.value;
+      user.email = emailInput.value;
+      localStorage.setItem('loggedInUser', JSON.stringify(user));
+      // Optionally, show a subtle notification or console log
+      console.log('User details saved automatically.');
+    }
+
+    nameInput.addEventListener('input', saveUserDetails);
+    emailInput.addEventListener('input', saveUserDetails);
+
+    // Password form submission handler
+    document.getElementById('password-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const newPassword = document.getElementById('new-password').value;
+      const confirmPassword = document.getElementById('confirm-password').value;
+      if (newPassword !== confirmPassword) {
+        alert('New password and confirmation do not match.');
+        return;
+      }
+      alert('Password changed successfully!');
+      // Here you would add code to change password, e.g., via API call
+      this.reset();
+    });
+  </script>
+</body>
+</html>

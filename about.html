@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+
+  <link rel="stylesheet" href="css/plant_pages.css" />
+  <title>About Us</title>
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Segoe UI", sans-serif;
+    }
+
+    body {
+      background: linear-gradient(to right, #d7d2cc, #304352);
+      color: #333;
+    }
+
+    
+
+    /* About Section */
+    .about-section {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      padding: 60px 10%;
+      background-color: #fefefe;
+      border-radius: 12px;
+      margin: 40px auto;
+      max-width: 1200px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    }
+
+    .text-content {
+      flex: 1 1 50%;
+      min-width: 300px;
+    }
+
+    .text-content h1 {
+      font-size: 42px;
+      margin-bottom: 20px;
+      color: #222;
+    }
+
+    .text-content p {
+      font-size: 16px;
+      line-height: 1.7;
+      margin-bottom: 25px;
+      color: #444;
+    }
+
+    .learn-more {
+      padding: 12px 25px;
+      font-size: 15px;
+      background-color: #28a745;
+      color: white;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: transform 0.3s ease, background-color 0.3s ease;
+    }
+
+    .learn-more:hover {
+      transform: scale(1.05);
+      background-color: #218838;
+    }
+
+    .image-content {
+      flex: 1 1 45%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .image-content img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 10px;
+      animation: fadeIn 1.2s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .about-section {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .image-content {
+        margin-top: 30px;
+      }
+    }
+
+    .tagline {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #4caf50;
+  margin-bottom: 15px;
+}
+
+    footer {
+      background-color: #333;
+      color: white;
+      padding: 20px 10%;
+      text-align: center;
+      margin-top: 102px;
+    }
+
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .social-icons a {
+      color: white;
+      margin: 0 10px;
+      font-size: 20px;
+      transition: color 0.3s ease;
+    }
+
+    .social-icons a:hover {
+      color: #28a745;
+    }
+
+  </style>
+</head>
+<body>
+  <!-- Navigation Bar -->
+  <header>
+    <h1 style="flex-grow: 1;">About Us</h1>
+    <nav class="navbar" style="display: flex; align-items: center; gap: 20px; justify-content: flex-end; flex-grow: 1;">
+      <ul class="nav-list" style="margin: 0; display: flex; gap: 20px; align-items: center;">
+        <li><a href="../Green Homes/index.html">Home</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropbtn" style="color: #f7fff7; font-weight: 700; padding: 8px 12px; border-radius: 0; display: flex; align-items: center; gap: 6px;">
+            Category <i class="fa fa-caret-down"></i>
+          </a>
+          <div class="dropdown-content" style="background: white; border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,0.15); padding: 12px 0; min-width: 220px; position: absolute; top: 38px; left: 0; z-index: 1000;">
+            <a href="../Green Homes/html/indoor-plants.html" style="display: flex; align-items: center; gap: 12px; padding: 8px 16px; color: #276927; font-weight: 600; font-size: 15px; border-radius: 8px; transition: background-color 0.3s ease, color 0.3s ease;">
+              <img src="../Green Homes/img/indoorp.jpg" alt="Indoor Plants" style="width: 48px; height: 48px; object-fit: cover; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.1);" />
+              Indoor Plants
+            </a>
+            <a href="../Green Homes/html/flowering-plants.html" style="display: flex; align-items: center; gap: 12px; padding: 8px 16px; color: #276927; font-weight: 600; font-size: 15px; border-radius: 8px; transition: background-color 0.3s ease, color 0.3s ease;">
+              <img src="../Green Homes/img/floweringp.jpg" alt="Flowering Plants" style="width: 48px; height: 48px; object-fit: cover; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.1);" />
+              Flowering Plants
+            </a>
+            <a href="../Green Homes/html/hanging-plants.html" style="display: flex; align-items: center; gap: 12px; padding: 8px 16px; color: #276927; font-weight: 600; font-size: 15px; border-radius: 8px; transition: background-color 0.3s ease, color 0.3s ease;">
+              <img src="../Green Homes/img/hangingp.jpg" alt="Hanging Plants" style="width: 48px; height: 48px; object-fit: cover; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.1);" />
+              Hanging Plants
+            </a>
+            <a href="../Green Homes/html/medicinal-plants.html" style="display: flex; align-items: center; gap: 12px; padding: 8px 16px; color: #276927; font-weight: 600; font-size: 15px; border-radius: 8px; transition: background-color 0.3s ease, color 0.3s ease;">
+              <img src="../Green Homes/img/medicinalp.jpg" alt="Medicinal Plants" style="width: 48px; height: 48px; object-fit: cover; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.1);" />
+              Medicinal Plants
+            </a>
+          </div>
+        </li>
+        <li><a href="../Green Homes/html/contact.html">Contact us</a></li>
+        <li><a href="../Green Homes/about.html">About</a></li>
+      </ul>
+      <div style="position: relative;">
+        <button id="cart-toggle-btn"><i class="fas fa-shopping-cart"></i> <span>Cart</span></button>
+        <div id="cart-popup" style="display:none;">
+          <h3>Your Cart</h3>
+          <div id="cart-content"></div>
+          <div id="cart-total">Total: ₹0</div>
+          <button id="checkout-btn">Checkout</button>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+
+  <section class="about-section">
+    <div class="text-content">
+     <h2>ABOUT US</h2>
+<p class="tagline">Bringing Nature Closer to You</p>
+<p>
+  Welcome to our plant paradise! We are dedicated to bringing nature closer to your home with a wide range of indoor and outdoor plants. Whether you're a beginner or a seasoned plant parent, our mission is to provide you with the best quality greens and expert care tips to help them thrive. Join us in growing a greener, healthier lifestyle—one plant at a time.
+</p>
+<button class="learn-more" onclick="window.location.href='index.html#categories'">Explore Plants</button>
+    </div>
+    <div class="image-content">
+      <img src="img/logo.png" alt="header" />
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-content">
+      <p>&copy; 2025 Plant Paradise. All rights reserved.</p>
+      <div class="social-icons">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/plant_pages.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

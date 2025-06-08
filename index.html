@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Green Homes</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="css/view-details-button.css" />
+  <link rel="stylesheet" href="styles-cart-enhancements.css" />
+
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+<header class="navbar">
+  <div class="nav-logo">🌿 Green Homes</div>
+  <div class="search-container">
+  <input type="text" id="search-input" placeholder="Search plants..." autocomplete="off" oninput="searchPlants()" onfocus="toggleSuggestions(true)" onblur="hideSuggestions()">
+  <ul id="suggestion-list"></ul>
+</div>
+
+</div>
+
+  <ul class="nav-links">
+
+  <li class="dropdown">
+  <a href="#">Category ▾</a>
+  <ul class="dropdown-menu">
+    <li>
+      <a href="html/indoor-plants.html">
+        <img src="img/indoorp.jpg" alt="Indoor" />
+        Indoor Plants
+      </a>
+    </li>
+    <li>
+      <a href="html/flowering-plants.html">
+        <img src="img/floweringp.jpg" alt="Flowering" />
+        Flowering Plants
+      </a>
+    </li>
+    <li>
+      <a href="html/hanging-plants.html">
+        <img src="img/hangingp.jpg" alt="Hanging" />
+        Hanging Plants
+      </a>
+    </li>
+    <li>
+      <a href="html/medicinal-plants.html">
+        <img src="img/medicinalp.jpg" alt="Medicinal" />
+        Medicinal Plants
+      </a>
+    </li>
+  </ul>
+</li>
+
+
+    <li><a href="html/contact.html">Contact us</a></li>
+    <li><a href="about.html">About</a></li>
+        <li><a href="html/faq.html">FAQs</a></li>
+    <li><a href="html/blog.html">Blog</a></li>
+    <li id="nav-login"><a href="login.html">Login</a></li>
+   <li id="user-menu" style="display: none; position: relative;">
+  <span id="user-name" style="cursor: pointer; font-weight: 600; padding: 8px 12px; border-radius: 8px; transition: background 0.3s;">
+    👤 User
+  </span>
+  <ul id="user-dropdown" class="user-dropdown">
+    <li><a href="javascript:void(0)" id="logout-link" style="transition: color 0.3s ease;"> Logout</a></li>
+    <li><a href="html/account.html" id="account-link" style="transition: color 0.3s ease;">Account</a></li>
+  </ul>
+</li>
+
+<li id="cart-container" style="position: relative;">
+  <div id="cart-icon" onclick="toggleCartPopup()" style="cursor: pointer;">
+    🛒 Cart <span id="cart-count" style="background:red; color:white; padding:2px 6px; border-radius:50%; display:none;">0</span>
+  </div>
+
+  <!-- Cart Popup -->
+  <div id="cart-popup" class="cart-popup">
+    <button class="close-btn" aria-label="Close Cart" onclick="toggleCartPopup()">×</button>
+    <h2>🛒 Your Cart</h2>
+    <div id="cart-items"></div>
+    <div id="cart-total" style="margin-top:10px; font-weight:bold;"></div>
+    <button class="checkout-btn" onclick="goToBilling()">Checkout</button>
+  </div>
+</li>
+</ul>
+</header>
+
+
+
+
+
+
+  <!-- Hero Section -->
+<section class="hero-slider">
+  <div class="slide active">
+    <img src="img/hero_image.jpg" alt="Slide 1" />
+    <div class="slide-caption">Welcome to Green Homes</div>
+  </div>
+  <div class="slide">
+    <img src="img/flowering_hero.jpg" alt="Slide 2" />
+    <div class="slide-caption">
+      <span class="discount-badge-hero">20-30% OFF</span>
+      <a href="html/flowering-plants.html" class="hero-button" aria-label="Beautiful Flowering Plants">Explore Flowering Plants</a>
+    </div>
+  </div>
+  <div class="slide">
+    <img src="img/indoor_hero.jpg" alt="Slide 3" />
+    <div class="slide-caption">
+      <a href="html/indoor-plants.html" class="hero-button" aria-label="Best indoor Plants">Explore indoor Plants</a>
+    </div>
+  </div>
+    <div class="slide">
+    <img src="img/medicinal_hero.jpg" alt="Slide 3" />
+    <div class="slide-caption">
+      <a href="html/medicinal-plants.html" class="hero-button" aria-label="Best medicinal Plants">Explore Medicinal Plants</a>
+    </div>
+  </div>
+     <div class="slide">
+    <img src="img/hanging_hero.jpg" alt="Slide 3" />
+    <div class="slide-caption">
+      <a href="html/hanging-plants.html" class="hero-button" aria-label="Best Hanging Plants">Explore Hanging Plants</a>
+    </div>
+  </div>
+ 
+
+  <div id="dots" class="dots">
+    <span class="dot active"></span>
+    <span class="dot"></span>
+    <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+
+  </div>
+
+  <button id="prevBtn" class="nav-btn prev-btn">&#10094;</button>
+  <button id="nextBtn" class="nav-btn next-btn">&#10095;</button>
+</section>
+
+
+  <!-- Category Section -->
+    <section id="categories" class="categories">
+    <h2>Choose Your Plant Type</h2>
+    <div class="category-grid">
+      <div class="category-card">
+        <img src="img/floweringp.jpg" alt="Flowering Plants" />
+        <a href="html/flowering-plants.html">Flowering Plants</a>
+      </div>  
+      <div class="category-card">
+        <img src="img/indoorp.jpg" alt="Indoor Plants" />
+        <a href="html/indoor-plants.html">Indoor Plants</a>
+      </div>
+      <div class="category-card">
+        <img src="img/hangingp.jpg" alt="Hanging Plants" />
+        <a href="html/hanging-plants.html">Hanging Plants</a>
+      </div>
+      <div class="category-card">
+        <img src="img/medicinalp.jpg" alt="Medicinal Plants" />
+        <a href="html/medicinal-plants.html">Medicinal Plants</a>
+      </div>
+    </div>
+  </section>
+
+
+      <!--  popular plants   -->
+
+<section class="plant-list">
+  <h2>Popular Plants</h2>
+  <div class="plant-grid">
+
+
+    <!-- 1. Snake Plant -->
+    <div class="plant-card" data-plant-name="Snake Plant">
+      <div class="plant-image">
+        <img src="img/snake.webp" alt="Snake Plant">
+        <span class="discount-badge">Save 10%</span>
+      </div>
+      <div class="plant-details">
+        <div class="price">
+          <span class="old-price">₹332</span>
+          <span class="new-price">₹299</span>
+        </div>
+        <h3 class="plant-title">Snake Plant</h3>
+        <div class="rating">⭐⭐⭐⭐☆ <span>150 reviews</span></div>
+        <div class="offers">🔥 100+ sold this month</div>
+        <button class="view-details-btn" onclick="window.location.href='html/snake.html'">View Details</button>
+        <button onclick="buyNow('Snake Plant', 299, 'img/snake.webp')">Buy Now</button>
+        <button onclick="addToCart('Snake Plant', 299, 'img/snake.webp')">Add to Cart</button>
+      </div>
+    </div>
+
+    <!-- 2. Money Plant -->
+    <div class="plant-card">
+      <div class="plant-image">
+        <img src="img/money_plant.webp" alt="Money Plant">
+        <span class="discount-badge">Save 15%</span>
+      </div>
+      <div class="plant-details">
+        <div class="price">
+          <span class="old-price">₹234</span>
+          <span class="new-price">₹199</span>
+        </div>
+        <h3 class="plant-title">Money Plant</h3>
+        <div class="rating">⭐⭐⭐⭐☆ <span>170 reviews</span></div>
+        <div class="offers">🔥 120+ sold this month</div>
+        <button class="view-details-btn" onclick="window.location.href='html/money-plant.html'">View Details</button>
+        <button onclick="buyNow('Money Plant', 199, 'img/money_plant.jpeg')">Buy Now</button>
+        <button onclick="addToCart('Money Plant', 199, 'img/money_plant.jpeg')">Add to Cart</button>
+      </div>
+    </div>
+
+    <!-- 3. Peace Lily -->
+    <div class="plant-card">
+      <div class="plant-image">
+        <img src="img/peace_lily.jpg" alt="Peace Lily">
+        <span class="discount-badge">Save 20%</span>
+      </div>
+      <div class="plant-details">
+        <div class="price">
+          <span class="old-price">₹375</span>
+          <span class="new-price">₹299</span>
+        </div>
+        <h3 class="plant-title">Peace Lily</h3>
+        <div class="rating">⭐⭐⭐⭐⭐ <span>200 reviews</span></div>
+        <div class="offers">🔥 Bestseller</div>
+        <button class="view-details-btn" onclick="window.location.href='html/peacelily.html'">View Details</button>
+        <button onclick="buyNow('Peace Lily', 299, 'img/peace_lily.jpeg')">Buy Now</button>
+        <button onclick="addToCart('Peace Lily', 299, 'img/peace_lily.jpeg')">Add to Cart</button>
+      </div>
+    </div>
+
+    <!-- 4. Aloe Vera -->
+    <div class="plant-card">
+      <div class="plant-image">
+        <img src="img/alovera.webp" alt="Aloe Vera">
+        <span class="discount-badge">Save 10%</span>
+      </div>
+      <div class="plant-details">
+        <div class="price">
+          <span class="old-price">₹222</span>
+          <span class="new-price">₹199</span>
+        </div>
+        <h3 class="plant-title">Aloe Vera</h3>
+        <div class="rating">⭐⭐⭐⭐☆ <span>95 reviews</span></div>
+        <div class="offers">🔥 Natural healer</div>
+        <button class="view-details-btn" onclick="window.location.href='html/alovera.html'">View Details</button>
+        <button onclick="buyNow('Aloe Vera', 199, 'img/alovera.jpeg')">Buy Now</button>
+        <button onclick="addToCart('Aloe Vera', 199, 'img/alovera.jpeg')">Add to Cart</button>
+      </div>
+    </div>
+
+    <!-- 5. Spider Plant -->
+    <div class="plant-card">
+      <div class="plant-image">
+        <img src="img/spider.webp" alt="Spider Plant">
+        <span class="discount-badge">Save 25%</span>
+      </div>
+      <div class="plant-details">
+        <div class="price">
+          <span class="old-price">₹266</span>
+          <span class="new-price">₹199</span>
+        </div>
+        <h3 class="plant-title">Spider Plant</h3>
+        <div class="rating">⭐⭐⭐⭐☆ <span>110 reviews</span></div>
+        <div class="offers">🔥 Air purifier</div>
+        <button class="view-details-btn" onclick="window.location.href='html/spider-plant.html'">View Details</button>
+        <button onclick="buyNow('Spider Plant', 199, 'img/spider.jpeg')">Buy Now</button>
+        <button onclick="addToCart('Spider Plant', 199, 'img/spider.jpeg')">Add to Cart</button>
+      </div>
+    </div>
+
+    <!-- 6. ZZ Plant -->
+    <div class="plant-card">
+      <div class="plant-image">
+        <img src="img/zz_plant.jpg" alt="ZZ Plant">
+        <span class="discount-badge">Save 20%</span>
+      </div>
+      <div class="plant-details">
+        <div class="price">
+          <span class="old-price">₹375</span>
+          <span class="new-price">₹299</span>
+        </div>
+        <h3 class="plant-title">ZZ Plant</h3>
+        <div class="rating">⭐⭐⭐⭐⭐ <span>145 reviews</span></div>
+        <div class="offers">🔥 Low maintenance</div>
+        <button class="view-details-btn" onclick="window.location.href='html/zz-plant.html'">View Details</button>
+        <button onclick="buyNow('ZZ Plant', 299, 'img/zz_plant.jpeg')">Buy Now</button>
+        <button onclick="addToCart('ZZ Plant', 299, 'img/zz_plant.jpeg')">Add to Cart</button>
+      </div>
+    </div>
+
+    <!-- 7. Bamboo Plant -->
+    <div class="plant-card">
+      <div class="plant-image">
+        <img src="img/bamboo.jpg" alt="Bamboo Plant">
+        <span class="discount-badge">Save 20%</span>
+      </div>
+      <div class="plant-details">
+        <div class="price">
+          <span class="old-price">₹249</span>
+          <span class="new-price">₹199</span>
+        </div>
+        <h3 class="plant-title">Bamboo Plant</h3>
+        <div class="rating">⭐⭐⭐⭐☆ <span>80 reviews</span></div>
+        <div class="offers">🔥 Good luck charm</div>
+        <button class="view-details-btn" onclick="window.location.href='html/bamboo.html'">View Details</button>
+        <button onclick="buyNow('Bamboo Plant', 199, 'img/bamboo.jpg')">Buy Now</button>
+        <button onclick="addToCart('Bamboo Plant', 199, 'img/bamboo.jpg')">Add to Cart</button>
+      </div>
+    </div>
+
+    <!-- 8. Jade Plant -->
+    <div class="plant-card">
+      <div class="plant-image">
+        <img src="img/jade.webp" alt="Jade Plant">
+        <span class="discount-badge">Save 20%</span>
+      </div>
+      <div class="plant-details">
+        <div class="price">
+          <span class="old-price">₹249</span>
+          <span class="new-price">₹199</span>
+        </div>
+        <h3 class="plant-title">Jade Plant</h3>
+        <div class="rating">⭐⭐⭐⭐☆ <span>90 reviews</span></div>
+        <div class="offers">🔥 Prosperity symbol</div>
+        <button class="view-details-btn" onclick="window.location.href='html/jade-plant.html'">View Details</button>
+        <button onclick="buyNow('Jade Plant', 199, 'img/jade.webp')">Buy Now</button>
+        <button onclick="addToCart('Jade Plant', 199, 'img/jade.webp')">Add to Cart</button>
+      </div>
+    </div>
+
+
+  </div>
+</section>
+
+
+    <footer class="footer" style="background-color: white; color: #1b4d1b;">
+  <div class="footer-container" style="color: #1b4d1b;">
+    <div class="footer-column" style="color: #1b4d1b;">
+      <img src="img/logo.png" alt="PlantsNest Logo" class="footer-logo">
+      <p style="color: #1b4d1b;"><strong>Green Homes</strong> is your trusted source for indoor and outdoor plants, care tips, and eco-friendly green living resources.</p>
+    </div>
+
+    <div class="footer-column" style="color: #1b4d1b;">
+      <h4 style="color: #1b4d1b;">Popular Categories</h4>
+      <ul>
+        <li><a href="html/indoor-plants.html" style="color: #1b4d1b;">Indoor Plants</a></li>
+        <li><a href="html/medicinal-plants.html" style="color: #1b4d1b;">medicinal Plants</a></li>
+        <li><a href="html/hanging-plants.html" style="color: #1b4d1b;">hanging plants</a></li>
+        <li><a href="html/flowering-plants.html" style="color: #1b4d1b;">Flowering plants</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-column" style="color: #1b4d1b;">
+      <h4 style="color: #1b4d1b;">Useful Links</h4>
+      <ul>
+        <li><a href="index.html" style="color: #1b4d1b;">Home</a></li>
+        <li><a href="about.html" style="color: #1b4d1b;">About Us</a></li>
+        <li><a href="html/contact.html" style="color: #1b4d1b;">Contact</a></li>
+        <li><a href="html/faq.html" style="color: #1b4d1b;">FAQs</a></li>
+        <li><a href="html/blog.html" style="color: #1b4d1b;">Blog</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-column" style="color: #1b4d1b;">
+
+      <h4 style="color: #1b4d1b;">Follow Us:</h4>
+      <div class="social-icons" style="color: #1b4d1b;">
+        <a href="#" style="color: #1b4d1b;"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" style="color: #1b4d1b;"><i class="fab fa-x-twitter"></i></a>
+        <a href="#" style="color: #1b4d1b;"><i class="fab fa-instagram"></i></a>
+        <a href="#" style="color: #1b4d1b;"><i class="fab fa-whatsapp"></i></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+
+  <script src="script.js"></script>
+<script src="https://kit.fontawesome.com/e2c130e36e.js" crossorigin="anonymous"></script>
+
+<div id="toast-container" style="position: fixed; top: 70px; right: 20px; z-index: 10000;"></div>
+
+</body>
+</html>
+
+
+
+
+

@@ -194,15 +194,28 @@
       }
     });
 
+    // Get unique key for the current plant page
+    function getPlantKey() {
+      const plantTitleElem = document.querySelector('.plant-title');
+      if (plantTitleElem) {
+        // Use plant title text as key, removing spaces and converting to lowercase
+        return plantTitleElem.textContent.trim().toLowerCase().replace(/\s+/g, '') + 'Reviews';
+      }
+      // Fallback key
+      return 'defaultReviews';
+    }
+
     // Load reviews from localStorage
     function loadReviews() {
-      const reviews = JSON.parse(localStorage.getItem('aloveraReviews')) || [];
+      const key = getPlantKey();
+      const reviews = JSON.parse(localStorage.getItem(key)) || [];
       return reviews;
     }
 
     // Save reviews to localStorage
     function saveReviews(reviews) {
-      localStorage.setItem('aloveraReviews', JSON.stringify(reviews));
+      const key = getPlantKey();
+      localStorage.setItem(key, JSON.stringify(reviews));
     }
 
     // Render reviews on the page
